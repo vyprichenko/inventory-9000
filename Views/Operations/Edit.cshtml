@@ -1,0 +1,32 @@
+@model InventoryApplication.Models.Operation
+
+@{
+    ViewData["Title"] = "Редагувати";
+}
+
+<h1 class="h4">Редагувати</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-4">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="nav mb-3">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                <a class="nav-link" asp-action="Index">Повернутися до списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,57 @@
+@model IEnumerable<InventoryApplication.Models.InventoryReceipt>
+
+@{
+    ViewData["Title"] = "Індекс";
+}
+
+<h1>Надходження обладнання</h1>
+
+<p>
+    <a asp-action="Create">Створити нове</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Inventory)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Supplier.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Inventory.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        <div class="d-flex align-content-center justify-content-end gap-2">
+                            <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

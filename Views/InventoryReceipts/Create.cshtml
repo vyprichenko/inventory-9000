@@ -1,0 +1,49 @@
+@model InventoryApplication.Models.InventoryReceipt
+
+@{
+    ViewData["Title"] = "Створити";
+}
+
+<h1 class="h4">Створити акт надходження обладнання</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Date" class="form-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="SupplierId" class="form-label"></label>
+                <select asp-for="SupplierId" class="form-select" asp-items="ViewBag.SupplierId"></select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="InventoryId" class="form-label"></label>
+                <select asp-for="InventoryId" class="form-select" asp-items="ViewBag.InventoryId"></select>
+            </div>
+            <div class="mb-4">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Створити" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <nav class="nav">
+        <a class="nav-link" asp-action="Index">Повернутися до списку</a>
+    </nav>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

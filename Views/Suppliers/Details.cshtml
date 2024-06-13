@@ -1,0 +1,23 @@
+@model InventoryApplication.Models.Supplier
+
+@{
+    ViewData["Title"] = "Деталі";
+}
+
+<h1>Деталі про постачальника</h1>
+
+<hr />
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+<nav class="nav">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Редагувати</a>
+    <a class="nav-link" asp-action="Index">Повернутися до списку</a>
+</nav>

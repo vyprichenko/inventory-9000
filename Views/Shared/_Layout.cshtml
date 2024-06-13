@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Інвентаризатор 9000</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/InventoryApplication.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg" style="background-color:#e3f2fd;">
+            <div class="container-fluid">
+                @* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Інвентаризатор 9000</a> *@
+                <button class="navbar-toggler btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    Меню
+                </button>
+                <div class="navbar-collapse collapse d-lg-inline-flex justify-content-between gap-2">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">🏠</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Suppliers" asp-action="Index">Постачальники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Employees" asp-action="Index">Працівники</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Departments" asp-action="Index">Відділи</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Operations" asp-action="Index">Операції</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Inventories" asp-action="Index">Обладнання</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="InventoryReceipts" asp-action="Index">Надходження</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="InventoryTransfers" asp-action="Index">Переміщення</a>
+                        </li>
+                    </ul>
+                    <form asp-controller="Home" asp-action="Index" method="get" role="search" class="d-flex flex-grow-1">
+                        <input class="form-control me-2" type="text" name="search" value="@((string)ViewData["search"] ?? "")" placeholder="Назва або номер обладнання" />
+                        <button class="btn btn btn-outline-primary" type="submit">Пошук</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+    <footer class="border-top footer text-muted py-2 py-lg-4">
+        <div class="container">
+            &copy; 2024 - Інвентаризатор 9000
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

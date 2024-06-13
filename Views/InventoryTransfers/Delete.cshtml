@@ -1,0 +1,51 @@
+@model InventoryApplication.Models.InventoryTransfer
+
+@{
+    ViewData["Title"] = "Видалити";
+}
+
+<h1>Видалити акт переміщення обладнання</h1>
+
+<div class="alert alert-danger">Ви впевнені, що хочете видалити цей запис? Всі пов'язані записи також будуть видалені.</div>
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Operation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Operation.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Signatory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Signatory.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartmentResponsibleEmployee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartmentResponsibleEmployee.FullName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete" class="d-flex">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" />
+        <nav class="nav">
+            <a class="nav-link" asp-action="Index">Повернутися до списку</a>
+        </nav>
+    </form>
+</div>

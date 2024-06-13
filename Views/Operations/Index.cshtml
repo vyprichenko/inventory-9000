@@ -1,0 +1,40 @@
+@model IEnumerable<InventoryApplication.Models.Operation>
+
+@{
+    ViewData["Title"] = "Список";
+}
+
+<h1>Операції з обладнанням</h1>
+
+<p>
+    <a asp-action="Create">Створити нову</a>
+</p>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <div class="d-flex align-content-center justify-content-end gap-2">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Редагувати</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Деталі</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Видалити</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

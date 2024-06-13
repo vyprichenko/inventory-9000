@@ -1,0 +1,58 @@
+@model InventoryApplication.Models.InventoryTransfer
+
+@{
+    ViewData["Title"] = "Редагувати";
+}
+
+<h1 class="h4">Редагувати</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Date" />
+            @* <div class="mb-3">
+                <label asp-for="Date" class="form-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div> *@
+            <div class="mb-3">
+                <label asp-for="Inventories" class="form-label"></label>
+                <select asp-for="Inventories" class="form-select" asp-items="ViewBag.InventoryId"></select>
+                <span asp-validation-for="Inventories" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="OperationId" class="form-label"></label>
+                <select asp-for="OperationId" class="form-select" asp-items="ViewBag.OperationId"></select>
+                <span asp-validation-for="OperationId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DepartmentId" class="form-label"></label>
+                <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentId"></select>
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="DepartmentResponsibleEmployeeId" class="form-label"></label>
+                <select asp-for="DepartmentResponsibleEmployeeId" class="form-select" asp-items="ViewBag.DepartmentResponsibleEmployeeId"></select>
+                <span asp-validation-for="DepartmentResponsibleEmployeeId" class="text-danger"></span>
+            </div>
+            <div class="mb-4">
+                <label asp-for="SignatoryId" class="form-label"></label>
+                <select asp-for="SignatoryId" class="form-select" asp-items="ViewBag.SignatoryId"></select>
+                <span asp-validation-for="SignatoryId" class="text-danger"></span>
+            </div>
+            <div class="nav mb-3">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+                <a class="nav-link" asp-action="Index">Повернутися до списку</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

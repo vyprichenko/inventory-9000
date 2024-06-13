@@ -1,0 +1,88 @@
+@using InventoryApplication.Models;
+
+@{
+    ViewData["Title"] = "Головна";
+    var search = (string)ViewData["search"];
+    var inventories = (IEnumerable<Inventory>)ViewData["Inventory"]!;
+    var inventoryReceipts = (IEnumerable<InventoryReceipt>)ViewData["InventoryReceipt"]!;
+    var inventoryTransfers = (IEnumerable<InventoryTransfer>)ViewData["InventoryTransfer"]!;
+}
+
+@if (!string.IsNullOrEmpty(search))
+{
+    <p class="lead">
+        Результати пошуку за запитом «@search»:
+    </p>
+}
+<div class="row">
+    <div class="col">
+        <h1 class="h4 mb-3">Обладнання</h1>
+        <div class="list-group">
+            @foreach (var item in inventories)
+            {
+                <a asp-controller="Inventories"
+                   asp-action="Details"
+                   asp-route-id="@item.Id"
+                   class="list-group-item list-group-item-action d-flex flex-column">
+                    <span>@item.Name</span>
+                    <small class="text-muted">@(item.SerialNumber ?? "Без серійного номеру")</small>
+                </a>
+            }
+        </div>
+        @if (inventories.Count() == 0)
+        {
+            <div class="alert alert-warning py-2" role="alert">
+                Обладнання не знайдено!
+            </div>
+        }
+    </div>
+    <div class="col">
+        <h2 class="h4 mb-3">Надходження</h2>
+        <div class="list-group">
+            @foreach (var item in inventoryReceipts)
+            {
+                <a asp-controller="InventoryReceipts"
+                   asp-action="Details"
+                   asp-route-id="@item.Id"
+                   class="list-group-item list-group-item-action">
+                    <span class="d-flex justify-content-between align-items-center">
+                        <span>
+                            @item.Inventory.Name
+                        </span>
+                        <span class="badge bg-primary rounded-pill">@item.Date.ToShortDateString() @item.Date.ToShortTimeString()</span>
+                    </span>
+                    <small class="text-muted">Постачальник: @item.Supplier.Name</small>
+                </a>
+            }
+        </div>
+        @if (inventoryReceipts.Count() == 0)
+        {
+            <div class="alert alert-warning py-2" role="alert">
+                Надходжень не знайдено!
+            </div>
+        }
+    </div>
+    <div class="col">
+        <h2 class="h4 mb-3">Переміщення</h2>
+        <div class="list-group">
+            @foreach (var item in inventoryTransfers)
+            {
+                <a asp-controller="InventoryTransfers"
+                   asp-action="Details"
+                   asp-route-id="@item.Id"
+                   class="list-group-item list-group-item-action d-flex flex-column">
+                    <span class="d-flex justify-content-between align-items-center">
+                        @item.Operation.Name
+                        <span class="badge bg-primary rounded-pill">@item.Date.ToShortDateString() @item.Date.ToShortTimeString()</span>
+                    </span>
+                </a>
+            }
+        </div>
+        @if (inventoryTransfers.Count() == 0)
+        {
+            <div class="alert alert-warning py-2" role="alert">
+                Переміщень не знайдено!
+            </div>
+        }
+    </div>
+</div>
